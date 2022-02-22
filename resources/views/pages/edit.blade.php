@@ -9,7 +9,6 @@
 </div>
 <form action="{{ route('saveedit',$comment) }}" method='post' class="mb-4">
     @csrf
-    @method('PUT')
     <div class="mb-4">
         <label for="body" class="sr-only">Body</label>
         <textarea name="body" id="body" cols="30" rows="4" 

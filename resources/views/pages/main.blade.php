@@ -33,7 +33,7 @@
         @foreach ($comments as $comment)
            <div class="mb-4 flex justify-start gap-7">
            <p class="grow">{{$comment->body}}</p> 
-           <form action="{{route('edit', $comment)}}" method="post">
+           <form action="{{route('edit', $comment)}}" method="get">
             @csrf
                 <div>
                     <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">edit</button>
@@ -41,7 +41,6 @@
             </form>
             <form action="{{route('delete', $comment)}}" method="post">
                 @csrf
-                @method('DELETE')
                     <div>
                         <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">delete</button>
                     </div>
