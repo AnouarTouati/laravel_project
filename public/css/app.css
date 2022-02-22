@@ -471,11 +471,32 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-full {
   width: 100%;
 }
+.grow {
+  flex-grow: 1;
+}
+.basis-1\/4 {
+  flex-basis: 25%;
+}
+.basis-2\/4 {
+  flex-basis: 50%;
+}
+.items-stretch {
+  align-items: stretch;
+}
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-center {
   justify-content: center;
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-7 {
+  gap: 1.75rem;
+}
+.justify-self-stretch {
+  justify-self: stretch;
 }
 .rounded-lg {
   border-radius: 0.5rem;

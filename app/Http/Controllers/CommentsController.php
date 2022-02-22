@@ -8,12 +8,12 @@ class CommentsController extends Controller
 {
     public function index (){
         $comments= Comment::get();
+        $comments = Comment::get();
         return view('pages.main',['comments'=>$comments]);
     }
 
     public function store(Request $request){
         $this->validate($request,['body'=>'required']);
-        
         Comment::create(
             ['body'=>$request->body]
         );
@@ -29,7 +29,6 @@ class CommentsController extends Controller
         return view('pages.edit',['comment'=>$comment]);
     }
     public function save(Request $request,Comment $comment){
-      
         $comment->update(['body'=>$request['body']]);
         return redirect()->route('comment');
     }
