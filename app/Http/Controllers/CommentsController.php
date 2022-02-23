@@ -33,7 +33,19 @@ class CommentsController extends Controller
     public function edit(Comment $comment){
         return view('pages.edit',['comment'=>$comment]);
     }
+
     public function save(Request $request,Comment $comment){
+        if($request->file('image')!=null){
+           $this->deleteImageIfExists($comment);
+           $path = $this->storeImageAndReturnPath($request);
+        }else{
+            $path=$comment->image_path;
+        }
+
+        $comment->update(['body'=>$request['body'], 'image_path'=>$path]);
+        return redirect()->route('comment');
+    }
+    public function temp_save(Request $request,Comment $comment){
         if($request->file('image')!=null){
            $this->deleteImageIfExists($comment);
            $path = $this->storeImageAndReturnPath($request);

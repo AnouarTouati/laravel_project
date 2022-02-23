@@ -22,9 +22,11 @@
             </div>
         @enderror
         @if($comment->image_path!="")
-        <img class="w-40 object-contain" src="{{ asset($comment->image_path)}}" alt="an image">
-      @endif
-      <input type="file" name="image" placeholder="Choose image" id="image">
+        <img id="image_display" class="w-40 object-contain" src="{{ asset($comment->image_path)}}" alt="an image">
+       @else
+       <img id="image_display" class="w-40 object-contain">
+       @endif
+      <input type="file" name="image" accept="image/*"placeholder="Choose image" id="image" onchange="loadFile(event)">
     </div>
     <div>
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Edit</button>
