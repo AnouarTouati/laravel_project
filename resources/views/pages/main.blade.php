@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<form action="{{ route('comment') }}" method='post' class="mb-4">
+<form action="{{ route('comment') }}" method='post'  enctype="multipart/form-data" class="mb-4">
     @csrf
     <div class="mb-4">
         <label for="body" class="sr-only">Body</label>
@@ -22,7 +22,7 @@
                 {{ $message }}
             </div>
         @enderror
-        
+        <input type="file" name="image" placeholder="Choose image" id="image">
     </div>
     <div>
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Comment</button>
@@ -31,20 +31,28 @@
 
     @if ($comments->count())
         @foreach ($comments as $comment)
-           <div class="mb-4 flex justify-start gap-7">
-           <p class="grow">{{$comment->body}}</p> 
-           <form action="{{route('edit', $comment)}}" method="get">
-            @csrf
-                <div>
-                    <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">edit</button>
-                </div>
-            </form>
-            <form action="{{route('delete', $comment)}}" method="post">
+           <div class="mb-4 flex gap-7">
+           
+           <p>{{$comment->body}}</p> 
+
+           @if($comment->image_path!="")
+            <img class=" w-40 object-contain" src="{{ asset($comment->image_path)}}" alt="an image">
+          @endif
+           <div>
+            <form action="{{route('edit', $comment)}}" method="get">
                 @csrf
                     <div>
-                        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">delete</button>
+                        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">edit</button>
                     </div>
                 </form>
+            <form action="{{route('delete', $comment)}}" method="post">
+                    @csrf
+                        <div>
+                            <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded font-small">delete</button>
+                        </div>
+                    </form>
+            </div>
+
            </div>
             
         @endforeach

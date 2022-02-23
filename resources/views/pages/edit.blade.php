@@ -7,7 +7,7 @@
        Comments
     </div>
 </div>
-<form action="{{ route('saveedit',$comment) }}" method='post' class="mb-4">
+<form action="{{ route('saveedit',$comment) }}" method='post'  enctype="multipart/form-data" class="mb-4">
     @csrf
     <div class="mb-4">
         <label for="body" class="sr-only">Body</label>
@@ -21,7 +21,10 @@
                 {{ $message }}
             </div>
         @enderror
-        
+        @if($comment->image_path!="")
+        <img class="w-40 object-contain" src="{{ asset($comment->image_path)}}" alt="an image">
+      @endif
+      <input type="file" name="image" placeholder="Choose image" id="image">
     </div>
     <div>
         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Edit</button>
